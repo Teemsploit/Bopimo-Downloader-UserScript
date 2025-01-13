@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.3
 // @description  Adds a button to download item textures from Bopimo.com
-// @author       Teemsploit, Variant Tombstones
+// @author       Teemsploit, Variant Tombstones, Evelyn
 // @license      MIT
 // @match        https://www.bopimo.com/items/*
 // @run-at       document-start
