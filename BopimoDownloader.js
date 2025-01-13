@@ -15,36 +15,32 @@
 (function () {
   'use strict';
 
-  function createDownloadButton() {
+  function injectUI() {
     var buttonPanel = document.createElement('div');
+    buttonPanel.id = "custom-download-panel";
     buttonPanel.className = "shop-card";
     buttonPanel.style = "position: fixed; z-index: 1000; padding: 1rem;";
     buttonPanel.style.bottom = "1rem";
     buttonPanel.style.right = "1rem";
-
-    document.getElementById("app").appendChild(buttonPanel);
-
-    createButtons(buttonPanel);
-
-    var credits = document.createElement('p');
-    credits.textContent = "Credits: Teemsploit & Variant Tombstones";
-    buttonPanel.appendChild(credits);
+    buttonPanel.innerHTML = `
+      <button class="button" id="download-texture-btn">Download Texture</button>
+      <button class="button" id="download-mesh-btn" style="margin-left: 10px;">Download Mesh</button>
+      <p>Credits: Teemsploit & Variant Tombstones</p>
+    `;
+    document.body.appendChild(buttonPanel);
   }
 
-  function createButtons(buttonPanel) {
-    var tButton = document.createElement('button');
-    tButton.textContent = 'Download Texture';
-    tButton.className = "button";
-    tButton.onclick = () => download('image');
+  function makeButtonsDoStuffIGuess() {
+    const textureButton = document.getElementById("download-texture-btn");
+    const meshButton = document.getElementById("download-mesh-btn");
 
-    var mButton = document.createElement('button');
-    mButton.textContent = 'Download Mesh';
-    mButton.className = "button";
-    mButton.style.marginLeft = '10px';
-    mButton.onclick = () => download('mesh');
+    if (textureButton) {
+      textureButton.addEventListener("click", () => download('image'));
+    }
 
-    buttonPanel.appendChild(tButton);
-    buttonPanel.appendChild(mButton);
+    if (meshButton) {
+      meshButton.addEventListener("click", () => download('mesh'));
+    }
   }
 
   function download(type) {
@@ -74,5 +70,15 @@
     }
   }
 
-  createDownloadButton();
+  function waitForDomReady() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', makeButtonsDoStuffIGuess);
+    } else {
+      makeButtonsDoStuffIGuess();
+    }
+  }
+
+  injectUI();
+
+  waitForDomReady();
 })();
