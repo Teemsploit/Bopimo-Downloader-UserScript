@@ -8,6 +8,8 @@
 // @match        https://www.bopimo.com/items/*
 // @run-at       document-start
 // @grant        none
+// @downloadURL https://update.greasyfork.org/scripts/523680/Bopimo%20Item%20Data%20Downloader.user.js
+// @updateURL https://update.greasyfork.org/scripts/523680/Bopimo%20Item%20Data%20Downloader.meta.js
 // ==/UserScript==
 
 (function () {
